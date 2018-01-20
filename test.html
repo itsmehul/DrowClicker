@@ -7,28 +7,57 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+    li{
+        display: inline-block;
+        margin: 10px;
+        background: rgb(99, 124, 192);
+        padding: 8px;
+        border-radius: 7%;
+    }
+    </style>
 
     <script>
         var arr = [{
-            url: 'http://via.placeholder.com/350x150',
+            title:  'drow1',
+            url: 'https://pre00.deviantart.net/cea5/th/pre/i/2014/020/4/a/drow_ranger___dota_2_by_silver_fate-d72y5kt.jpg',
             count: 0
         },
         {
-            url: 'http://via.placeholder.com/150x150',
+            title:  'drow2',
+            url: 'https://steamuserimages-a.akamaihd.net/ugc/792933198711157206/D13CB8AB7FF17525DCC7818578E2CF7443D90426/',
             count: 0
-        }]
+        },
+        {
+            title:  'drow3',
+            url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsoXEQnrOAKaoC4ouUzL58C0IMSt1nb-c3Yug9YAXCSxQObYtvUQ',
+            count: 0
+        },
+        {
+            title:  'drow4',
+            url: 'https://qph.ec.quoracdn.net/main-qimg-b6abff36b7ade37b60c082bc9d9c20f7-c',
+            count: 0
+        },
+        {
+            title:  'drow5',
+            url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQncxP0YqWcVbpC4aemLEeZ5ScrIv4Ac8_eIZLcmkhjD8kfCwVODg',
+            count: 0
+        },
+        ]
 
         $(document).ready(function () {
             $(arr).each(function (index, ele) {
                 console.log(index);
-                $('ul').append("<li id=" + index + ">" + ele.url + "</li>");
+                $('ul').append("<li id=" + index + ">" + ele.title + "</li>");
 
             });
             $('ul').on('click', 'li', function (e) {
+                $('div').empty();
                 let id = $(e.target).attr('id');
                 console.log(e.target);
                 arr[id].count++;
                 console.log(arr[id].count);
+                $('div').append("<img src="+arr[id].url+">");
             });
         });
     </script>
@@ -36,6 +65,7 @@
 
 <body>
     <ul></ul>
+    <div></div>
 </body>
 
 </html>
