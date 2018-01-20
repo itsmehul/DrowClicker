@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+    var arr = ['http://via.placeholder.com/350x150', 'http://via.placeholder.com/150x150']
+    $(document).ready(function () {
+        $(arr).each(function (index, ele) {
+            var num = ele;
+            var lstitem = document.createElement('div');
+            lstitem.textContent = num;
+            lstitem.addEventListener('click', (function (numCopy) {
+                return function () {
+                    alert(numCopy);
+                };
+            })(num));
+            
+            document.body.appendChild(lstitem);
+
+        });
+        // for (var i = 0; i < nums.length; i++) {
+
+        //     // This is the number we're on...
+        //     var num = nums[i];
+
+        //     // We're creating a DOM element for the number
+        //     var elem = document.createElement('div');
+        //     elem.textContent = num;
+
+        //     // ... and when we click, alert the value of `num`
+
+
+        //     document.body.appendChild(elem);
+        // };
+    });
+</script>
+</head>
+<body>
+    <!-- <ul>
+        <li value="1">Hello</li>
+        <li value="2">Ok</li>
+    </ul>
+    <div>
+        <img src="" alt="some image">
+    </div> -->
+</body>
+
+</html>
