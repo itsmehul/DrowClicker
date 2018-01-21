@@ -32,6 +32,7 @@ $(function () {
         init: function () {
             drListView.init();
             drView.init();
+            admin.init();
         },
         getDrows: function () {
             return model.Drows;
@@ -45,6 +46,13 @@ $(function () {
         incrementCounter: function () {
             model.currentDrow.count++;
             drView.render();
+        },
+        addDrow: function (title, url) {
+            console.log(title);
+            console.log(url);
+            model.Drows.push({title: title,url: url, count: 0});
+            console.log(model.Drows);
+            drListView.init();
         }
 
     };
@@ -59,14 +67,16 @@ $(function () {
         render: function () {
             var currentDrow = controller.getCurrentDrow();
             console.log(currentDrow);
-            $('div').empty();
-            $('div').append("<img src=" + currentDrow.url + ">");
+            $('.show-image').empty();
+            $('.show-image').append("<img src=" + currentDrow.url + ">");
         }
     };
 
     var drListView = {
         //Initially?
         init: function () {
+            $('ul').empty();
+            $('ul').off('click', 'li');
             this.render();
         },
         render: function () {
@@ -86,5 +96,33 @@ $(function () {
             });
         }
     };
+
+    var admin = {
+        init: function () {
+            this.toggleAdmin();
+            this.getDrowValue();
+        },
+        toggleAdmin: function () {
+            $('.toggleA').click(function (e) {
+                let auth = prompt("What's my name for you?");
+                if (auth.toLowerCase() == 'bubu') {
+                    $('form').toggleClass('hide');
+                }
+            });
+        },
+        getDrowValue: function () {
+            $('form').submit(function (e) {
+                e.preventDefault();
+                var title = $('input#title').val();
+                var url = $('input#url').val();
+                controller.addDrow(title,url);
+            });
+
+
+
+
+        }
+    }
+
     controller.init();
 });

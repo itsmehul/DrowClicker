@@ -5,3 +5,16 @@ li {
     padding: 8px;
     border-radius: 7%;
 }
+.container{
+    display: flex;
+}
+.admin{
+    margin-left: 50px;
+    margin-top: 200px;
+}
+.admin *{
+    margin: 10px;
+}
+.hide{
+    visibility: hidden
+}
