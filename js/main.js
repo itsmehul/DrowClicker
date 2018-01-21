@@ -48,10 +48,23 @@ $(function () {
             drView.render();
         },
         addDrow: function (title, url) {
-            console.log(title);
-            console.log(url);
-            model.Drows.push({title: title,url: url, count: 0});
+            model.Drows.push({ title: title, url: url, count: 0 });
+            //console.log(model.Drows);
+            drListView.init();
+        },
+        //Remove element from object array
+        removeDrow: function (ttle) {
+            //use map operator to perform array operations on Object arrays
+            let index = $.map(model.Drows, function (item) {
+                return item.title;
+            }).indexOf(ttle);
+            console.log($.map(model.Drows, function (item) {
+                return item.title;
+            }));
             console.log(model.Drows);
+            if (index !== -1) {
+                model.Drows.splice(index, 1);
+            }
             drListView.init();
         }
 
@@ -66,7 +79,7 @@ $(function () {
         //Render Image of current drow
         render: function () {
             var currentDrow = controller.getCurrentDrow();
-            console.log(currentDrow);
+            //console.log(currentDrow);
             $('.show-image').empty();
             $('.show-image').append("<img src=" + currentDrow.url + ">");
         }
@@ -84,7 +97,7 @@ $(function () {
             drows = controller.getDrows();
             //each was not useful in this case
             $.map(drows, function (ele, i) {
-                console.log(i)
+                //console.log(i)
                 $('ul').append("<li id=" + i + ">" + ele.title + "</li>");
             });
             //Add click events for each list item
@@ -101,26 +114,30 @@ $(function () {
         init: function () {
             this.toggleAdmin();
             this.getDrowValue();
+            this.removeDrow();
         },
         toggleAdmin: function () {
             $('.toggleA').click(function (e) {
                 let auth = prompt("What's my name for you?");
                 if (auth.toLowerCase() == 'bubu') {
-                    $('form').toggleClass('hide');
+                    $('.form').toggleClass('hide');
                 }
             });
         },
         getDrowValue: function () {
-            $('form').submit(function (e) {
+            $('.add-drow').click(function (e) {
                 e.preventDefault();
                 var title = $('input#title').val();
                 var url = $('input#url').val();
-                controller.addDrow(title,url);
+                controller.addDrow(title, url);
             });
-
-
-
-
+        },
+        removeDrow: function () {
+            $('#remove').click(function (e) {
+                e.preventDefault();
+                var title = $('input#title').val();
+                controller.removeDrow(title);
+            });
         }
     }
 
