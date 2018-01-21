@@ -1,0 +1,7 @@
+li {
+    display: inline-block;
+    margin: 10px;
+    background: rgb(99, 124, 192);
+    padding: 8px;
+    border-radius: 7%;
+}
